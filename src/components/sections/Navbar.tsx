@@ -7,11 +7,14 @@ import { useScrolled } from "@/hooks/useScrolled";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export function Navbar() {
   const scrolled = useScrolled(24);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header
@@ -21,35 +24,45 @@ export function Navbar() {
       )}
     >
       <Container className="flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5">
           <HyperplaneMark />
           <span className="font-display text-[1.05rem] font-medium tracking-tight text-white">
             Hyperplane
           </span>
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-9 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-[var(--hp-text-secondary)] transition-colors duration-200 hover:text-white"
-            >
-              {link.label}
-            </a>
-          ))}
+        <nav className="hidden items-center gap-7 lg:flex">
+          {navLinks.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-sm transition-colors duration-200 hover:text-white",
+                  active
+                    ? "font-medium text-white underline underline-offset-8 decoration-[var(--hp-accent-secondary)]"
+                    : "text-[var(--hp-text-secondary)]"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="hidden md:block">
-          <Button size="md" variant="primary" withArrow className="group">
-            Start a project
-          </Button>
+        <div className="hidden lg:block">
+          <Link href="/contact">
+            <Button size="md" variant="primary" withArrow className="group">
+              Start a project
+            </Button>
+          </Link>
         </div>
 
         <button
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
-          className="flex size-10 items-center justify-center rounded-full border border-[var(--hp-border)] text-white md:hidden"
+          className="flex size-10 items-center justify-center rounded-full border border-[var(--hp-border)] text-white lg:hidden"
         >
           {open ? <X className="size-4" /> : <Menu className="size-4" />}
         </button>
@@ -62,22 +75,32 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden hp-glass md:hidden"
+            className="overflow-hidden hp-glass lg:hidden"
           >
             <Container className="flex flex-col gap-1 py-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="py-3 text-sm text-[var(--hp-text-secondary)] hover:text-white"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <Button size="md" variant="primary" className="mt-3 w-full">
-                Start a project
-              </Button>
+              {navLinks.map((link) => {
+                const active = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "py-2.5 text-sm transition-colors hover:text-white",
+                      active
+                        ? "font-medium text-[var(--hp-accent-secondary)]"
+                        : "text-[var(--hp-text-secondary)]"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <Link href="/contact" onClick={() => setOpen(false)} className="mt-3 w-full">
+                <Button size="md" variant="primary" className="w-full">
+                  Start a project
+                </Button>
+              </Link>
               <p className="pt-4 text-xs text-[var(--hp-text-tertiary)]">
                 {site.email}
               </p>

@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { fadeUp, stagger, viewportOnce } from "@/animations/variants";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function CTASection() {
   return (
@@ -39,13 +40,17 @@ export function CTASection() {
           >
             Tell us the problem. We&apos;ll tell you the technology that solves it.
           </motion.p>
-          <motion.div variants={fadeUp} className="mt-9 flex justify-center gap-4">
-            <Button size="lg" variant="primary" withArrow>
-              Start a project
-            </Button>
-            <Button size="lg" variant="secondary">
-              Talk to an engineer
-            </Button>
+          <motion.div variants={fadeUp} className="mt-9 flex flex-wrap justify-center gap-4">
+            <Link href="/contact">
+              <Button size="lg" variant="primary" withArrow>
+                Start a project
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button size="lg" variant="secondary">
+                Talk to an engineer
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </Container>

@@ -4,8 +4,9 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroVisual } from "./HeroVisual";
-import { blurIn, fadeUp, stagger, viewportOnce } from "@/animations/variants";
+import { blurIn, fadeUp, stagger } from "@/animations/variants";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -43,12 +44,16 @@ export function Hero() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 pt-2">
-            <Button size="lg" variant="primary" withArrow className="group">
-              Start a project
-            </Button>
-            <Button size="lg" variant="secondary">
-              See our work
-            </Button>
+            <Link href="/contact">
+              <Button size="lg" variant="primary" withArrow className="group">
+                Start a project
+              </Button>
+            </Link>
+            <Link href="/projects">
+              <Button size="lg" variant="secondary">
+                See our work
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
 

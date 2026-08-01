@@ -1,17 +1,18 @@
 import { Container } from "@/components/ui/Container";
 import { navLinks, site } from "@/constants/site";
+import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--hp-border)] py-12">
+    <footer className="border-t border-[var(--hp-border)] py-14">
       <Container className="flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col items-center gap-3 md:items-start">
-          <div className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5">
             <FooterMark />
             <span className="font-display text-[1.05rem] font-medium text-white">
               Hyperplane
             </span>
-          </div>
+          </Link>
           <p className="text-sm text-[var(--hp-accent-secondary)]/80">
             {site.tagline}
           </p>
@@ -19,11 +20,18 @@ export function Footer() {
 
         <nav className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-[var(--hp-text-secondary)]">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-white">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="transition-colors duration-200 hover:text-white"
+            >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a href={`mailto:${site.email}`} className="hover:text-white">
+          <a
+            href={`mailto:${site.email}`}
+            className="transition-colors duration-200 hover:text-white"
+          >
             {site.email}
           </a>
         </nav>

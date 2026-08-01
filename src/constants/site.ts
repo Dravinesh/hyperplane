@@ -5,15 +5,18 @@ export const site = {
     "Hyperplane is a technology company that helps businesses grow through engineering — AI, software, cloud, and automation built to solve real problems, not just ship websites.",
   email: "hello@hyperplane.tech",
   social: {
-    linkedin: "https://linkedin.com/company/hyperplane",
-    twitter: "https://twitter.com/hyperplane",
-    github: "https://github.com/hyperplane",
+    linkedin: "https://linkedin.com/company/hyperplane-placeholder",
+    twitter: "https://twitter.com/hyperplane-placeholder",
+    github: "https://github.com/hyperplane-placeholder",
   },
 } as const;
 
 export const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Why Hyperplane", href: "#why" },
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Process", href: "/process" },
+  { label: "Projects", href: "/projects" },
+  { label: "Team", href: "/team" },
+  { label: "Insights", href: "/insights" },
+  { label: "Contact", href: "/contact" },
 ] as const;
