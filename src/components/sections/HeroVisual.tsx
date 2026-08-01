@@ -1,17 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { HyperplaneEmblem } from "@/components/ui/HyperplaneLogo";
 
 /**
- * Signature element: intersecting plane geometry.
+ * Signature element: intersecting plane geometry with the official Hyperplane Emblem at center.
  * Three translucent quadrilaterals ("hyperplanes") on independent slow
- * rotation, cut through by one bright diagonal shard — the same gesture
- * as the mark's negative-space blade. No stock imagery, no particles.
+ * rotation, cut through by one bright diagonal shard.
  */
 export function HeroVisual() {
   return (
     <div
-      className="relative mx-auto aspect-square w-full max-w-[560px]"
+      className="relative mx-auto aspect-square w-full max-w-[560px] flex items-center justify-center"
       aria-hidden
     >
       <div
@@ -21,7 +21,7 @@ export function HeroVisual() {
 
       <svg
         viewBox="0 0 560 560"
-        className="relative h-full w-full"
+        className="absolute inset-0 h-full w-full"
         style={{ perspective: 900 }}
       >
         <defs>
@@ -84,6 +84,15 @@ export function HeroVisual() {
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
       </svg>
+
+      {/* Floating Center Emblem */}
+      <motion.div
+        animate={{ y: [-8, 8, -8] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="relative z-10 p-8 rounded-3xl hp-glass border border-[var(--hp-border-strong)] shadow-[0_0_80px_rgba(168,85,247,0.3)]"
+      >
+        <HyperplaneEmblem className="size-36 md:size-44" />
+      </motion.div>
     </div>
   );
 }

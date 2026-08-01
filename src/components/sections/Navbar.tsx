@@ -10,6 +10,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { HyperplaneLogo } from "@/components/ui/HyperplaneLogo";
 
 export function Navbar() {
   const scrolled = useScrolled(24);
@@ -24,11 +25,8 @@ export function Navbar() {
       )}
     >
       <Container className="flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5">
-          <HyperplaneMark />
-          <span className="font-display text-[1.05rem] font-medium tracking-tight text-white">
-            Hyperplane
-          </span>
+        <Link href="/" className="flex items-center gap-3 group">
+          <HyperplaneLogo variant="full" size="md" />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -109,25 +107,5 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </header>
-  );
-}
-
-function HyperplaneMark() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-      <defs>
-        <linearGradient id="navmark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#a855f7" />
-          <stop offset="100%" stopColor="#6366f1" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M6 3v18M6 3l12 8-12 8M18 3v18"
-        stroke="url(#navmark)"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }
