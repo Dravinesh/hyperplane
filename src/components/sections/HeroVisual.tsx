@@ -85,13 +85,19 @@ export function HeroVisual() {
         />
       </svg>
 
-      {/* Floating Center Emblem */}
+      {/* Floating Center Glass Card with Exact Logo Format */}
       <motion.div
         animate={{ y: [-8, 8, -8] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="relative z-10 p-8 rounded-3xl hp-glass border border-[var(--hp-border-strong)] shadow-[0_0_80px_rgba(168,85,247,0.3)]"
+        className="relative z-10 p-8 md:p-10 rounded-3xl hp-glass border border-[var(--hp-border-strong)] flex flex-col items-center justify-center text-center shadow-[0_0_80px_rgba(168,85,247,0.35)]"
       >
-        <HyperplaneEmblem className="size-36 md:size-44" />
+        <HyperplaneEmblem className="size-28 md:size-36" />
+        <span className="font-display text-xl md:text-2xl font-bold uppercase tracking-[0.35em] text-white mt-4">
+          HYPERPLANE
+        </span>
+        <span className="font-display text-[10px] md:text-xs font-semibold uppercase tracking-[0.35em] text-[var(--hp-accent-secondary)] mt-1.5">
+          VISION BEYOND DIMENSIONS
+        </span>
       </motion.div>
     </div>
   );
