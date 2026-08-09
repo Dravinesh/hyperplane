@@ -1,5 +1,5 @@
 export const contactData = {
-  email: "hello@hyperplane.tech",
+  email: "services@hyperplane.com",
   phonePlaceholder: "+1 (800) 555-0199",
   offices: [
     {

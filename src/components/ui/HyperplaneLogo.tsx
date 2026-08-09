@@ -56,15 +56,15 @@ export function HyperplaneLogo({
         <div className="flex flex-col">
           <span
             className={cn(
-              "font-display font-bold uppercase text-white leading-none",
+              "font-brand-title text-white leading-none",
               textSizes[size]
             )}
           >
-            Hyperplane
+            HYPERPLANE
           </span>
           {showTagline && (
-            <span className="font-display text-[10px] font-semibold uppercase tracking-[0.3em] text-[var(--hp-accent-secondary)] mt-1">
-              Vision Beyond Dimensions
+            <span className="font-brand-title text-[9px] text-[var(--hp-accent-secondary)] mt-1">
+              VISION BEYOND DIMENSIONS
             </span>
           )}
         </div>

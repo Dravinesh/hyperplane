@@ -6,27 +6,27 @@ export type FeaturedProject = {
   year: string;
 };
 
-/** Placeholder case studies — layout is production-ready, content swaps in as real client work ships. */
+/** Featured Case Studies on Homepage */
 export const featuredProjects: FeaturedProject[] = [
   {
-    id: "project-01",
-    client: "Case Study — Fintech Platform",
-    summary: "Rebuilding a lending pipeline around a real-time risk engine.",
-    discipline: "AI Solutions · Cloud Infrastructure",
+    id: "legacymind-ai",
+    client: "LegacyMind AI — Engineering Memory Graph",
+    summary: "Captures and preserves institutional engineering knowledge as teams work. 'People may leave. Knowledge doesn't.'",
+    discipline: "AI Platform · Knowledge Graph",
     year: "2026",
   },
   {
-    id: "project-02",
-    client: "Case Study — Logistics Network",
-    summary: "Replacing spreadsheets with a live operations control system.",
-    discipline: "Custom Software · Automation",
+    id: "syncdoc-ai",
+    client: "SyncDoc AI — Autonomous Documentation Platform",
+    summary: "Documentation platform that continuously observes development activity. 'If code changes, docs do too.'",
+    discipline: "Developer Tooling · Architecture Intelligence",
     year: "2026",
   },
   {
-    id: "project-03",
-    client: "Case Study — Consumer Marketplace",
-    summary: "A storefront and admin platform engineered for peak-season load.",
-    discipline: "Web Applications · UI/UX",
-    year: "2025",
+    id: "divyavasthu",
+    client: "Divyavasthu — Natural & Ayurvedic Store",
+    summary: "Modern, mobile-responsive e-commerce platform & admin management engine with Phone OTP & Razorpay.",
+    discipline: "E-Commerce · Firebase · Razorpay",
+    year: "2026",
   },
 ];

@@ -25,7 +25,7 @@ export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [activeModalProject, setActiveModalProject] = useState<ProjectCaseStudy | null>(null);
 
-  const categories = ["All", "Financial Technology", "Supply Chain & Logistics", "Consumer Marketplace", "Healthcare Analytics", "Clean Energy", "Digital Media & Streaming"];
+  const categories = ["All", ...Array.from(new Set(projectsData.map((p) => p.industry)))];
 
   const filteredProjects =
     activeCategory === "All"

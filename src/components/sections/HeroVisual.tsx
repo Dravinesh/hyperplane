@@ -141,10 +141,10 @@ export function HeroVisual() {
         data-cursor="card"
       >
         <HyperplaneEmblem className="size-28 md:size-36" />
-        <span className="font-display text-xl md:text-2xl font-bold uppercase tracking-[0.35em] text-white mt-4">
+        <span className="font-brand-title text-xl md:text-2xl text-white mt-4">
           HYPERPLANE
         </span>
-        <span className="font-display text-[10px] md:text-xs font-semibold uppercase tracking-[0.35em] text-[var(--hp-accent-secondary)] mt-1.5">
+        <span className="font-brand-title text-[10px] md:text-xs text-[var(--hp-accent-secondary)] mt-1.5">
           VISION BEYOND DIMENSIONS
         </span>
       </motion.div>

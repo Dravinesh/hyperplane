@@ -37,12 +37,12 @@ export function Hero() {
               transition={{ duration: 0.7, ease: HP_EASE, delay: 0.05 }}
             >
               <HyperplaneEmblem className="size-8" />
-              <span className="font-display text-2xl font-bold uppercase tracking-[0.3em] text-white sm:text-3xl">
+              <span className="font-brand-title text-2xl text-white sm:text-3xl">
                 HYPERPLANE
               </span>
             </motion.div>
             <motion.span
-              className="font-display text-xs font-semibold uppercase tracking-[0.35em] text-[var(--hp-accent-secondary)] pl-11"
+              className="font-brand-title text-xs text-[var(--hp-accent-secondary)] pl-11"
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: HP_EASE, delay: 0.2 }}

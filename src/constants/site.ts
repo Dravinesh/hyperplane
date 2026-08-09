@@ -3,7 +3,7 @@ export const site = {
   tagline: "Vision Beyond Dimensions",
   description:
     "Hyperplane is a technology company that helps businesses grow through engineering — AI, software, cloud, and automation built to solve real problems, not just ship websites.",
-  email: "hello@hyperplane.tech",
+  email: "services@hyperplane.com",
   social: {
     linkedin: "https://linkedin.com/company/hyperplane-placeholder",
     twitter: "https://twitter.com/hyperplane-placeholder",

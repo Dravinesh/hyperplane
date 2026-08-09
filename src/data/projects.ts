@@ -21,171 +21,219 @@ export type ProjectCaseStudy = {
 
 export const projectsData: ProjectCaseStudy[] = [
   {
-    id: "project-alpha",
-    title: "Project Alpha",
-    client: "Project Alpha (Fintech Pioneer)",
-    industry: "Financial Technology",
+    id: "legacymind-ai",
+    title: "LegacyMind AI – Institutional Knowledge Platform",
+    client: "LegacyMind AI Systems",
+    industry: "Developer Tooling & Enterprise AI",
     summary:
-      "Rebuilding a global lending pipeline around an autonomous real-time risk evaluation engine.",
+      "Captures and preserves institutional engineering knowledge as teams work. Continuously learns from PRs, code reviews, design docs, meeting transcripts, and commits to build a living knowledge graph. 'People may leave. Knowledge doesn't.'",
     problem:
-      "The client's legacy loan processing system required 48+ hours for manual underwriting risk checks, resulting in a 38% application drop-off rate and scaling bottlenecks during peak market demand.",
+      "Every experienced engineer carries years of undocumented architectural decisions, failed experiments, production workarounds, and historical context. When they leave, that vital knowledge leaves with them, leading to repeated mistakes and long onboarding times.",
     solution:
-      "Hyperplane engineered an AI-powered underwriting platform featuring high-throughput event processing and sub-100ms algorithmic risk scoring with automated audit logging.",
-    technologies: ["PyTorch", "Go", "Apache Kafka", "PostgreSQL", "React", "AWS"],
+      "Hyperplane engineered LegacyMind AI, an Engineering Memory Graph platform featuring Decision Intelligence, Historical Context Search, AI Handover Assistant, Edge Case Repository, Expertise Discovery, and a Conversational Knowledge Assistant.",
+    technologies: [
+      "Python",
+      "TypeScript",
+      "AI Memory Graph",
+      "Git & PR Scraper",
+      "Vector Search",
+      "LLM Context Index",
+      "Jira & Slack APIs",
+    ],
     timeline: "6 Months",
     year: "2026",
     featured: true,
     metrics: [
-      { label: "Decision Speed", value: "< 120ms", detail: "Down from 48 hours" },
-      { label: "Application Conversion", value: "+ 340%", detail: "Post launch growth" },
-      { label: "Operating Cost", value: "- 62%", detail: "Reduced manual audit load" },
+      { label: "Knowledge Retention", value: "100%", detail: "Preserves historical reasoning" },
+      { label: "Onboarding Speed", value: "2.5x Faster", detail: "Instant context accessibility" },
+      { label: "Repeated Mistakes", value: "Zero", detail: "Historical edge case search" },
     ],
     clientQuote: {
       quote:
-        "Hyperplane delivered an engine that handled our peak season transaction volumes without a single hiccup. Our risk accuracy actually improved while decision time dropped to milliseconds.",
-      author: "Chief Risk Officer",
-      role: "Global Fintech Division",
+        "People may leave. Knowledge doesn't. LegacyMind AI has eliminated our onboarding friction and saved us from repeating past architectural mistakes.",
+      author: "Chief Technology Officer",
+      role: "Enterprise Software Group",
     },
-    accentGradient: "from-violet-600/30 via-indigo-600/20 to-purple-900/40",
+    accentGradient: "from-indigo-600/30 via-violet-600/20 to-purple-900/40",
   },
   {
-    id: "project-nova",
-    title: "Project Nova",
-    client: "Project Nova (Global Logistics Network)",
-    industry: "Supply Chain & Logistics",
+    id: "syncdoc-ai",
+    title: "SyncDoc AI – Autonomous Documentation Platform",
+    client: "SyncDoc AI Developer Tools",
+    industry: "Developer Tooling & Enterprise SaaS",
     summary:
-      "Replacing legacy spreadsheets with a unified live operations control tower and route optimizer.",
+      "Autonomous documentation platform that continuously observes development activity and automatically keeps technical documentation accurate, version-aware, and searchable. 'If the code changes, the docs should too.'",
     problem:
-      "A fleet of 4,000+ freight vehicles operated on fragmented legacy spreadsheets, causing route inefficiencies, excessive fuel burn, and zero real-time tracking for end clients.",
+      "Engineering documentation quickly becomes stale as codebase merges happen daily, causing costly developer onboarding friction, information silos, and architectural misalignment.",
     solution:
-      "We built a real-time IoT tracking hub and dynamic graph optimization engine that continuously reroutes vehicles based on live traffic, weather, and dynamic customs clearance data.",
-    technologies: ["Rust", "Python", "Kubernetes", "TypeScript", "Tailwind CSS", "GCP"],
-    timeline: "8 Months",
+      "Hyperplane engineered SyncDoc AI, an autonomous infrastructure layer that connects to Git repos, CI/CD pipelines, and cloud specs to automatically update API references, generate architecture diagrams, flag knowledge gaps, and answer developer queries in natural language.",
+    technologies: [
+      "TypeScript",
+      "Python",
+      "AI Code Analysis",
+      "Git Integration",
+      "CI/CD Pipeline",
+      "OpenAPI",
+      "Graph Vector Index",
+    ],
+    timeline: "6 Months",
     year: "2026",
     featured: true,
     metrics: [
-      { label: "Fleet On-Time Delivery", value: "99.4%", detail: "Up from 81.2%" },
-      { label: "Fuel Consumption", value: "- 28%", detail: "Optimized route efficiency" },
-      { label: "Live Telemetry Nodes", value: "45k+", detail: "Real-time updates/sec" },
+      { label: "Doc Sync Velocity", value: "Real-time", detail: "Documentation that ships with your code" },
+      { label: "Architecture Intelligence", value: "Automated", detail: "Generates diagrams & API refs" },
+      { label: "Search Efficiency", value: "35% Saved", detail: "Instant natural language QA" },
     ],
     clientQuote: {
       quote:
-        "The control tower built by Hyperplane transformed our operational visibility. We now pinpoint bottlenecks before they impact deliveries.",
-      author: "VP of Supply Operations",
-      role: "International Freight Alliance",
-    },
-    accentGradient: "from-indigo-600/30 via-purple-600/20 to-blue-900/40",
-  },
-  {
-    id: "project-orion",
-    title: "Project Orion",
-    client: "Project Orion (Enterprise E-Commerce)",
-    industry: "Consumer Marketplace",
-    summary:
-      "A high-concurrency storefront and merchant admin engine built to sustain Black Friday traffic spikes.",
-    problem:
-      "Frequent flash sales overwhelmed the client's monolithic e-commerce framework, triggering server crashes and lost transactions amounting to millions in missed revenue.",
-    solution:
-      "Hyperplane re-architected the application into a headless, event-driven microservices architecture using Next.js, Redis edge caching, and auto-scaling cloud microservices.",
-    technologies: ["Next.js", "Node.js", "Redis", "GraphQL", "Terraform", "Cloudflare"],
-    timeline: "5 Months",
-    year: "2025",
-    featured: true,
-    metrics: [
-      { label: "Uptime During Peak", value: "100%", detail: "Zero downtime in 2025" },
-      { label: "Page Load Speed", value: "240ms", detail: "Global edge latency" },
-      { label: "Peak Orders/Min", value: "18,500", detail: "Sustained high load" },
-    ],
-    clientQuote: {
-      quote:
-        "During our highest revenue event of the year, the platform didn't just stay up — it felt instantaneous for shoppers worldwide.",
-      author: "Director of Digital Engineering",
-      role: "Consumer Retail Group",
-    },
-    accentGradient: "from-purple-600/30 via-violet-600/20 to-pink-900/40",
-  },
-  {
-    id: "project-vertex",
-    title: "Project Vertex",
-    client: "Project Vertex (HealthTech Intelligence)",
-    industry: "Healthcare Analytics",
-    summary:
-      "HIPAA-compliant patient data aggregation platform with predictive diagnostic assistance.",
-    problem:
-      "Clinical research teams spent hours compiling patient data across siloed hospital electronic health record (EHR) databases.",
-    solution:
-      "We engineered a zero-trust, federated analytics pipeline with encrypted data ingest and an intuitive medical research search portal.",
-    technologies: ["Python", "FastAPI", "PostgreSQL", "Docker", "React", "Azure Security"],
-    timeline: "9 Months",
-    year: "2025",
-    featured: false,
-    metrics: [
-      { label: "Data Ingest Rate", value: "10x", detail: "Faster clinical synthesis" },
-      { label: "Compliance Score", value: "100%", detail: "HIPAA & SOC2 certified" },
-      { label: "Research Time Saved", value: "15 hrs/wk", detail: "Per medical researcher" },
-    ],
-    clientQuote: {
-      quote:
-        "Hyperplane's strict adherence to security combined with exceptional UX design made our clinical software both bulletproof and a pleasure to use.",
-      author: "Head of Medical Informatics",
-      role: "Health Science Institute",
-    },
-    accentGradient: "from-blue-600/30 via-indigo-600/20 to-teal-900/40",
-  },
-  {
-    id: "project-horizon",
-    title: "Project Horizon",
-    client: "Project Horizon (Renewable Energy Grid)",
-    industry: "Clean Energy",
-    summary:
-      "Predictive grid load balancing and smart telemetry management for regional solar farms.",
-    problem:
-      "Unpredicted weather shifts created voltage spikes and grid imbalance across distributed solar energy storage units.",
-    solution:
-      "Hyperplane built a machine learning grid orchestrator that forecasts weather patterns and automatically rebalances battery storage distribution.",
-    technologies: ["Python", "TensorFlow", "Go", "TimescaleDB", "Vue.js", "AWS IoT"],
-    timeline: "7 Months",
-    year: "2025",
-    featured: false,
-    metrics: [
-      { label: "Grid Efficiency", value: "+ 22%", detail: "Optimized power utilization" },
-      { label: "Wasted Energy", value: "- 41%", detail: "Battery discharge tuning" },
-      { label: "Forecast Accuracy", value: "96.8%", detail: "24-hr predictive model" },
-    ],
-    clientQuote: {
-      quote:
-        "The intelligence Hyperplane brought to our energy management software allowed us to expand our grid capacity without additional hardware.",
-      author: "VP of Grid Operations",
-      role: "Clean Energy Utility",
+        "Documentation shouldn't be something engineers remember to maintain — it should be a living reflection of the codebase. SyncDoc AI keeps our technical knowledge aligned automatically.",
+      author: "VP of Engineering",
+      role: "Scale-Up Developer Platform",
     },
     accentGradient: "from-violet-600/30 via-purple-600/20 to-indigo-900/40",
   },
   {
-    id: "project-nexus",
-    title: "Project Nexus",
-    client: "Project Nexus (Autonomous Media Platform)",
-    industry: "Digital Media & Streaming",
+    id: "sustainagent",
+    title: "SustainAgent – Multi-Agent AI System",
+    client: "SustainAgent Energy Intelligence",
+    industry: "Clean Energy & AI",
     summary:
-      "Real-time video transcode processing and automated AI captioning/translation pipeline.",
+      "A multi-agent AI system designed to transform large-scale energy consumption data into actionable sustainability insights and ML anomaly detection.",
     problem:
-      "High rendering costs and manual multi-language translation slowed down global media distribution schedules.",
+      "Processing millions of energy consumption records across fragmented infrastructure made it difficult to identify unusual usage patterns, compute trend trajectories, or generate timely sustainability compliance reports.",
     solution:
-      "We built a GPU-accelerated video rendering cloud worker cluster integrated with multimodal AI translation models.",
-    technologies: ["Rust", "PyTorch", "FFmpeg", "Next.js", "Kubernetes", "AWS WebSockets"],
-    timeline: "6 Months",
+      "Hyperplane built a modular multi-agent AI system coordinating specialized agents for data retrieval, machine-learning anomaly detection, trend analysis, session-based context management, and automated report generation to support smarter energy decisions.",
+    technologies: [
+      "Python",
+      "Google AI Agent",
+      "Kaggle",
+      "Pandas",
+      "NumPy",
+      "Scikit-learn",
+      "Matplotlib",
+    ],
+    timeline: "5 Months",
     year: "2026",
-    featured: false,
+    featured: true,
     metrics: [
-      { label: "Transcode Speed", value: "4x Realtime", detail: "GPU cluster benchmark" },
-      { label: "Translation Accuracy", value: "98.2%", detail: "Across 34 languages" },
-      { label: "Media Processing Cost", value: "- 55%", detail: "Autoscaling GPU cost" },
+      { label: "Data Scope", value: "Millions", detail: "Energy records processed" },
+      { label: "Anomaly Detection", value: "ML-Based", detail: "Pattern recognition engine" },
+      { label: "Reporting Velocity", value: "Automated", detail: "Session context & structured reports" },
     ],
     clientQuote: {
       quote:
-        "Content that used to take days to localize and publish globally now goes live in minutes thanks to Hyperplane's pipeline.",
-      author: "Chief Product Officer",
-      role: "Global Media Enterprise",
+        "SustainAgent turns complex, noisy energy data into clear, actionable decision-making insights. The multi-agent workflow catches anomalies before they become expensive losses.",
+      author: "Chief Sustainability Officer",
+      role: "Global Utility & Grid Alliance",
     },
-    accentGradient: "from-indigo-600/30 via-violet-600/20 to-purple-900/40",
+    accentGradient: "from-emerald-600/30 via-teal-600/20 to-indigo-900/40",
+  },
+  {
+    id: "divyavasthu",
+    title: "Divyavasthu – Natural & Ayurvedic E-Commerce Platform",
+    client: "Divyavasthu Brand Group",
+    industry: "Consumer Marketplace",
+    summary:
+      "A modern, mobile-responsive e-commerce platform and centralized admin management system for a handcrafted natural & Ayurvedic skincare brand.",
+    problem:
+      "A growing handcrafted Ayurvedic skincare brand needed to replace manual customer orders and fragmented store processes with a high-conversion, mobile-optimized storefront and centralized multi-tenant store operations dashboard.",
+    solution:
+      "Hyperplane engineered a modern cloud-based e-commerce platform integrating Firebase Authentication (Phone OTP & Google Auth), Cloud Firestore, Firebase Storage, Razorpay online payments, persistent cart & wishlist, order tracking, and a dedicated admin management dashboard deployed on Vercel.",
+    technologies: [
+      "Next.js",
+      "React",
+      "Firebase Auth",
+      "Cloud Firestore",
+      "Razorpay",
+      "Vercel",
+      "Tailwind CSS",
+    ],
+    timeline: "4 Months",
+    year: "2026",
+    featured: true,
+    metrics: [
+      { label: "Authentication", value: "OTP & Google", detail: "Phone OTP & Social Auth" },
+      { label: "Payment Verification", value: "Razorpay", detail: "Sub-second online checkout" },
+      { label: "Store Control", value: "Admin Dashboard", detail: "Inventory & order management" },
+    ],
+    clientQuote: {
+      quote:
+        "Divyavasthu transformed how our customers discover natural wellness online. The platform handles browsing, payments, and admin store operations flawlessly.",
+      author: "Founder & Brand Lead",
+      role: "Divyavasthu Natural Care",
+    },
+    accentGradient: "from-amber-600/30 via-emerald-600/20 to-purple-900/40",
+  },
+  {
+    id: "ai-bi-assistant",
+    title: "AI Business Intelligence Assistant",
+    client: "Conversational Analytics Platform",
+    industry: "Financial Technology & Analytics",
+    summary:
+      "Transforms raw enterprise business data into natural language explanations, trends, visualizations, and strategic profit optimization recommendations.",
+    problem:
+      "Business leaders and analysts spend hours creating manual reports and writing complex SQL queries to answer routine operational and revenue questions.",
+    solution:
+      "We engineered an intelligent BI assistant allowing users to ask natural language questions (e.g. 'What caused sales to decline this month?'), automatically identifying trends, detecting anomalies, and providing actionable profit recommendations.",
+    technologies: [
+      "Python",
+      "LLM Orchestration",
+      "Pandas",
+      "PostgreSQL",
+      "Plotly",
+      "FastAPI",
+      "React",
+    ],
+    timeline: "4 Months",
+    year: "2025",
+    featured: false,
+    metrics: [
+      { label: "Query Speed", value: "< 2s", detail: "Natural language to chart" },
+      { label: "Report Automation", value: "100%", detail: "Zero manual SQL required" },
+      { label: "Profit Insight", value: "Actionable", detail: "Automated recommendations" },
+    ],
+    clientQuote: {
+      quote:
+        "Instead of filing data requests and waiting days for BI dashboards, our leadership team asks questions in plain language and receives instant, deep insights.",
+      author: "Head of Revenue Operations",
+      role: "Global Enterprise SaaS",
+    },
+    accentGradient: "from-blue-600/30 via-indigo-600/20 to-purple-900/40",
+  },
+  {
+    id: "ai-support-agent",
+    title: "AI Customer Support Agent",
+    client: "Intelligent Virtual Assistant",
+    industry: "Customer Experience & AI",
+    summary:
+      "Intelligent virtual assistant trained on internal knowledge bases, product docs, and policies to deliver instant, context-aware customer support with seamless escalation to human staff.",
+    problem:
+      "High customer support ticket volumes caused response delays, increased support costs, and overwhelmed human support agents with repetitive Tier-1 inquiries.",
+    solution:
+      "Hyperplane built an AI Support Agent featuring natural intent recognition, vector search knowledge base retrieval, session context preservation, and smooth escalation to human teams with full conversation history.",
+    technologies: [
+      "Python",
+      "Vector DB",
+      "RAG Pipeline",
+      "FastAPI",
+      "WebSockets",
+      "React",
+      "Redis",
+    ],
+    timeline: "3 Months",
+    year: "2025",
+    featured: false,
+    metrics: [
+      { label: "Ticket Resolution", value: "78%", detail: "Automated tier-1 resolution" },
+      { label: "Response Latency", value: "< 500ms", detail: "Instant context-aware replies" },
+      { label: "Customer CSAT", value: "4.8 / 5.0", detail: "Satisfied user experience" },
+    ],
+    clientQuote: {
+      quote:
+        "Our support staff can now focus on complex enterprise cases while the AI agent flawlessly resolves thousands of everyday customer inquiries.",
+      author: "Director of Customer Experience",
+      role: "Digital Services Group",
+    },
+    accentGradient: "from-purple-600/30 via-violet-600/20 to-teal-900/40",
   },
 ];

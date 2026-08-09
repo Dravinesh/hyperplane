@@ -76,10 +76,10 @@ export function LoadingScreen() {
               }}
               transition={{ duration: 0.5, ease: HP_EASE, delay: 0.15 }}
             >
-              <span className="font-display text-xl font-bold uppercase tracking-[0.35em] text-white">
+              <span className="font-brand-title text-xl text-white">
                 HYPERPLANE
               </span>
-              <span className="font-display text-[10px] font-semibold uppercase tracking-[0.35em] text-[var(--hp-accent-secondary)]">
+              <span className="font-brand-title text-[10px] text-[var(--hp-accent-secondary)]">
                 VISION BEYOND DIMENSIONS
               </span>
             </motion.div>
