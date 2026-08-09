@@ -6,10 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
 import { CTASection } from "@/components/sections/CTASection";
-import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { servicesData, faqData, type ServiceDetail } from "@/data";
 import {
   BrainCircuit,
@@ -47,9 +44,7 @@ export default function ServicesPage() {
   const [activeFaqIndex, setActiveFaqIndex] = useState<number | null>(0);
 
   return (
-    <SmoothScrollProvider>
-      <Navbar />
-      <main className="hp-noise pt-28 pb-20">
+    <main className="hp-noise pt-28 pb-20">
         {/* HERO SECTION */}
         <section className="relative overflow-hidden py-16 md:py-24">
           <div
@@ -308,7 +303,5 @@ export default function ServicesPage() {
         {/* CTA */}
         <CTASection />
       </main>
-      <Footer />
-    </SmoothScrollProvider>
   );
 }

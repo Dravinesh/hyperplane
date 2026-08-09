@@ -11,6 +11,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { HyperplaneLogo } from "@/components/ui/HyperplaneLogo";
+import { HP_EASE } from "@/animations/easings";
 
 export function Navbar() {
   const scrolled = useScrolled(24);
@@ -29,6 +30,7 @@ export function Navbar() {
           <HyperplaneLogo variant="full" size="md" />
         </Link>
 
+        {/* Desktop nav */}
         <nav className="hidden items-center gap-7 lg:flex">
           {navLinks.map((link) => {
             const active = pathname === link.href;
@@ -37,13 +39,26 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm transition-colors duration-200 hover:text-white",
+                  "relative text-sm transition-colors duration-200 hover:text-white pb-0.5",
                   active
-                    ? "font-medium text-white underline underline-offset-8 decoration-[var(--hp-accent-secondary)]"
+                    ? "font-medium text-white"
                     : "text-[var(--hp-text-secondary)]"
                 )}
               >
                 {link.label}
+                {/* Active indicator — sliding underline */}
+                <AnimatePresence>
+                  {active && (
+                    <motion.span
+                      layoutId="nav-indicator"
+                      className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-[var(--hp-accent-secondary)] to-[var(--hp-accent-blue)] rounded-full"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.25, ease: HP_EASE }}
+                    />
+                  )}
+                </AnimatePresence>
               </Link>
             );
           })}
@@ -57,51 +72,91 @@ export function Navbar() {
           </Link>
         </div>
 
-        <button
+        {/* Mobile hamburger */}
+        <motion.button
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
+          whileTap={{ scale: 0.93 }}
           className="flex size-10 items-center justify-center rounded-full border border-[var(--hp-border)] text-white lg:hidden"
         >
-          {open ? <X className="size-4" /> : <Menu className="size-4" />}
-        </button>
+          <AnimatePresence mode="wait">
+            {open ? (
+              <motion.span
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.18 }}
+              >
+                <X className="size-4" />
+              </motion.span>
+            ) : (
+              <motion.span
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.18 }}
+              >
+                <Menu className="size-4" />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.button>
       </Container>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, ease: HP_EASE }}
             className="overflow-hidden hp-glass lg:hidden"
           >
             <Container className="flex flex-col gap-1 py-4">
-              {navLinks.map((link) => {
+              {navLinks.map((link, idx) => {
                 const active = pathname === link.href;
                 return (
-                  <Link
+                  <motion.div
                     key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "py-2.5 text-sm transition-colors hover:text-white",
-                      active
-                        ? "font-medium text-[var(--hp-accent-secondary)]"
-                        : "text-[var(--hp-text-secondary)]"
-                    )}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.05, duration: 0.25, ease: HP_EASE }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "flex items-center py-2.5 text-sm transition-colors hover:text-white",
+                        active
+                          ? "font-medium text-[var(--hp-accent-secondary)]"
+                          : "text-[var(--hp-text-secondary)]"
+                      )}
+                    >
+                      {active && (
+                        <span className="mr-2 h-1 w-1 rounded-full bg-[var(--hp-accent-secondary)]" />
+                      )}
+                      {link.label}
+                    </Link>
+                  </motion.div>
                 );
               })}
-              <Link href="/contact" onClick={() => setOpen(false)} className="mt-3 w-full">
-                <Button size="md" variant="primary" className="w-full">
-                  Start a project
-                </Button>
-              </Link>
-              <p className="pt-4 text-xs text-[var(--hp-text-tertiary)]">
-                {site.email}
-              </p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: navLinks.length * 0.05, duration: 0.25 }}
+              >
+                <Link href="/contact" onClick={() => setOpen(false)} className="mt-3 w-full block">
+                  <Button size="md" variant="primary" className="w-full" noMagnet>
+                    Start a project
+                  </Button>
+                </Link>
+                <p className="pt-4 text-xs text-[var(--hp-text-tertiary)]">
+                  {site.email}
+                </p>
+              </motion.div>
             </Container>
           </motion.div>
         )}

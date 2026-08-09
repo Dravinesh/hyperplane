@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { LoadingScreen } from "@/components/providers/LoadingScreen";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { Navbar } from "@/components/sections/Navbar";
+import { Footer } from "@/components/sections/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -38,7 +43,14 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${inter.variable} h-full`}
     >
       <body className="min-h-full bg-[var(--hp-bg)] antialiased">
-        {children}
+        <SmoothScrollProvider>
+          {/* Phase 3 — Global UI chrome */}
+          <LoadingScreen />
+          <CustomCursor />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

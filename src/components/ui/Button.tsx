@@ -5,6 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { forwardRef } from "react";
+import { useMagnet } from "@/hooks/useMagnet";
 
 const buttonStyles = cva(
   "relative inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors duration-200 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-40",
@@ -30,25 +31,38 @@ type ButtonProps = Omit<HTMLMotionProps<"button">, "children"> &
   VariantProps<typeof buttonStyles> & {
     withArrow?: boolean;
     children?: React.ReactNode;
+    /** Disable magnetic pull (e.g. in loading states) */
+    noMagnet?: boolean;
   };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, withArrow, children, ...props }, ref) => {
+  ({ className, variant, size, withArrow, children, noMagnet, onMouseMove, onMouseLeave, ...props }, ref) => {
+    const magnet = useMagnet({ strength: variant === "primary" ? 6 : 4 });
+
     return (
       <motion.button
         ref={ref}
-        whileHover={{ y: -1 }}
         whileTap={{ scale: 0.97 }}
         transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
         className={cn(buttonStyles({ variant, size }), className)}
+        style={noMagnet ? undefined : { x: magnet.x, y: magnet.y }}
+        onMouseMove={noMagnet ? onMouseMove : (e) => { magnet.onMouseMove(e); onMouseMove?.(e); }}
+        onMouseLeave={noMagnet ? onMouseLeave : (e) => { magnet.onMouseLeave(); onMouseLeave?.(e as React.MouseEvent<HTMLButtonElement>); }}
         {...props}
       >
         {children}
         {withArrow && (
-          <ArrowUpRight
-            className="size-4 transition-transform duration-300 group-hover:translate-x-0.5"
-            strokeWidth={2}
-          />
+          <motion.span
+            className="inline-flex"
+            initial={false}
+            whileHover={{ x: 2, y: -2 }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <ArrowUpRight
+              className="size-4"
+              strokeWidth={2}
+            />
+          </motion.span>
         )}
       </motion.button>
     );

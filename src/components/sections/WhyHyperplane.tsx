@@ -4,16 +4,14 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { pillars } from "@/constants/pillars";
 import { fadeUp, stagger, viewportOnce } from "@/animations/variants";
+import { HP_EASE } from "@/animations/easings";
 import { motion } from "framer-motion";
+import { HpBackground } from "@/components/ui/HpBackground";
 
 export function WhyHyperplane() {
   return (
     <section id="why" className="hp-section relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[-10%] top-1/4 h-[420px] w-[420px] rounded-full blur-[140px]"
-        style={{ background: "var(--hp-gradient-radial-glow)" }}
-      />
+      <HpBackground glow glowOrigin="100% 50%" glowIntensity={0.8} />
 
       <Container className="relative">
         <SectionHeading
@@ -35,11 +33,23 @@ export function WhyHyperplane() {
               <motion.div
                 key={pillar.id}
                 variants={fadeUp}
-                className="flex gap-5 rounded-[var(--hp-radius-lg)] border border-[var(--hp-border)] bg-[var(--hp-surface)] p-7 transition-colors duration-300 hover:border-[var(--hp-border-strong)]"
+                whileHover={{
+                  y: -4,
+                  borderColor: "rgba(168, 85, 247, 0.3)",
+                  transition: { duration: 0.28, ease: HP_EASE },
+                }}
+                className="flex gap-5 rounded-[var(--hp-radius-lg)] border border-[var(--hp-border)] bg-[var(--hp-surface)] p-7 transition-colors duration-300 hover:bg-[var(--hp-card-hover)]"
               >
-                <div className="flex size-11 shrink-0 items-center justify-center rounded-[var(--hp-radius-sm)] bg-gradient-to-br from-[var(--hp-accent-secondary)]/20 to-[var(--hp-accent-blue)]/10 ring-1 ring-[var(--hp-border)]">
+                <motion.div
+                  className="flex size-11 shrink-0 items-center justify-center rounded-[var(--hp-radius-sm)] bg-gradient-to-br from-[var(--hp-accent-secondary)]/20 to-[var(--hp-accent-blue)]/10 ring-1 ring-[var(--hp-border)]"
+                  whileHover={{
+                    scale: 1.1,
+                    backgroundColor: "rgba(168, 85, 247, 0.15)",
+                    transition: { duration: 0.2 },
+                  }}
+                >
                   <Icon className="size-5 text-[var(--hp-accent-secondary)]" strokeWidth={1.75} />
-                </div>
+                </motion.div>
                 <div>
                   <h3 className="font-display text-[1.05rem] font-medium text-white">
                     {pillar.title}

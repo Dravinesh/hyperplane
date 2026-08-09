@@ -1,14 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { HP_EASE } from "@/animations/easings";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
 import { CTASection } from "@/components/sections/CTASection";
-import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { companyData } from "@/data/company";
 import {
   Target,
@@ -24,9 +22,7 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <SmoothScrollProvider>
-      <Navbar />
-      <main className="hp-noise pt-28 pb-20">
+    <main className="hp-noise pt-28 pb-20">
         {/* HERO SECTION */}
         <section className="relative overflow-hidden py-16 md:py-24">
           <div
@@ -153,18 +149,32 @@ export default function AboutPage() {
               className="mb-16"
             />
 
-            <div className="relative border-l border-[var(--hp-border-strong)] ml-4 md:ml-32 space-y-12">
+            <div className="relative ml-4 md:ml-32 space-y-12">
+              {/* Glowing vertical timeline line */}
+              <div
+                className="absolute left-0 top-2 bottom-2 w-px"
+                style={{
+                  background: "linear-gradient(180deg, var(--hp-accent-secondary) 0%, var(--hp-accent-blue) 60%, transparent 100%)",
+                }}
+              />
+
               {companyData.timeline.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -24 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, delay: idx * 0.08, ease: HP_EASE }}
                   className="relative pl-8 md:pl-12"
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute -left-[9px] top-1.5 size-4 rounded-full border-2 border-[var(--hp-accent-secondary)] bg-[var(--hp-bg)] shadow-[0_0_12px_rgba(168,85,247,0.6)]" />
+                  {/* Timeline dot — glowing */}
+                  <motion.div
+                    className="absolute -left-[9px] top-1.5 size-4 rounded-full border-2 border-[var(--hp-accent-secondary)] bg-[var(--hp-bg)]"
+                    initial={{ boxShadow: "0 0 0 0 rgba(168,85,247,0)" }}
+                    whileInView={{ boxShadow: "0 0 16px 4px rgba(168,85,247,0.5)" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.08 + 0.3 }}
+                  />
 
                   <div className="flex flex-col md:flex-row md:items-baseline md:gap-6">
                     <span className="font-display text-2xl font-bold text-[var(--hp-accent-secondary)]">
@@ -215,7 +225,5 @@ export default function AboutPage() {
         {/* CTA */}
         <CTASection />
       </main>
-      <Footer />
-    </SmoothScrollProvider>
   );
 }

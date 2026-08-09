@@ -6,9 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
-import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+
 import { contactData } from "@/data/contact";
 import {
   Mail,
@@ -49,9 +47,7 @@ export default function ContactPage() {
   };
 
   return (
-    <SmoothScrollProvider>
-      <Navbar />
-      <main className="hp-noise pt-28 pb-20">
+    <main className="hp-noise pt-28 pb-20">
         {/* HERO SECTION */}
         <section className="relative overflow-hidden py-16 md:py-24">
           <div
@@ -361,7 +357,5 @@ export default function ContactPage() {
           )}
         </AnimatePresence>
       </main>
-      <Footer />
-    </SmoothScrollProvider>
   );
 }

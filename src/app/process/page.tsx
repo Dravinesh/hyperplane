@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { fadeUp, stagger, viewportOnce } from "@/animations/variants";
+import { HP_EASE } from "@/animations/easings";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
 import { CTASection } from "@/components/sections/CTASection";
-import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { processStepsData, type ProcessStep } from "@/data/process";
 import {
   Search,
@@ -43,9 +42,7 @@ export default function ProcessPage() {
   const activeStep = processStepsData[activeStepIndex];
 
   return (
-    <SmoothScrollProvider>
-      <Navbar />
-      <main className="hp-noise pt-28 pb-20">
+    <main className="hp-noise pt-28 pb-20">
         {/* HERO SECTION */}
         <section className="relative overflow-hidden py-16 md:py-24">
           <div
@@ -239,38 +236,60 @@ export default function ProcessPage() {
               className="mb-12"
             />
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <motion.div
+              variants={stagger(0.06)}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportOnce}
+              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+            >
               {processStepsData.map((step, idx) => {
                 const Icon = iconMap[step.iconName] || Code;
+                const isActive = activeStepIndex === idx;
+                const isPassed = activeStepIndex > idx;
                 return (
-                  <Card
-                    key={step.id}
-                    className="p-6 cursor-pointer"
-                    onClick={() => setActiveStepIndex(idx)}
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="font-mono text-xs font-bold text-[var(--hp-accent-secondary)]">
-                        STEP 0{step.stepNumber}
-                      </span>
-                      <Icon className="size-5 text-[var(--hp-text-secondary)]" />
-                    </div>
-                    <h3 className="font-display text-lg font-medium text-white mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs text-[var(--hp-text-secondary)] line-clamp-2 leading-relaxed">
-                      {step.shortTagline}
-                    </p>
-                  </Card>
+                  <motion.div key={step.id} variants={fadeUp}>
+                    <Card
+                      className={`p-6 cursor-pointer transition-all duration-300 ${
+                        isActive
+                          ? "border-[var(--hp-accent-secondary)] shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+                          : isPassed
+                          ? "border-emerald-500/30"
+                          : ""
+                      }`}
+                      onClick={() => setActiveStepIndex(idx)}
+                    >
+                      <div className="flex items-center justify-between mb-4">
+                        <span className={`font-mono text-xs font-bold ${
+                          isActive ? "text-[var(--hp-accent-secondary)]" : isPassed ? "text-emerald-400" : "text-[var(--hp-text-tertiary)]"
+                        }`}>
+                          STEP 0{step.stepNumber}
+                        </span>
+                        <motion.div
+                          animate={isActive ? { scale: [1, 1.15, 1] } : { scale: 1 }}
+                          transition={{ duration: 0.6, ease: HP_EASE }}
+                        >
+                          <Icon className={`size-5 transition-colors ${
+                            isActive ? "text-[var(--hp-accent-secondary)]" : "text-[var(--hp-text-secondary)]"
+                          }`} />
+                        </motion.div>
+                      </div>
+                      <h3 className="font-display text-lg font-medium text-white mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-xs text-[var(--hp-text-secondary)] line-clamp-2 leading-relaxed">
+                        {step.shortTagline}
+                      </p>
+                    </Card>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </Container>
         </section>
 
         {/* CTA */}
         <CTASection />
       </main>
-      <Footer />
-    </SmoothScrollProvider>
   );
 }

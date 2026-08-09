@@ -199,3 +199,157 @@ h1, h2, h3, h4, .font-display {
     scroll-behavior: auto !important;
   }
 }
+
+/* =========================================================================
+   PHASE 3 — MOTION SYSTEM EXTENSIONS
+   ========================================================================= */
+
+/* Ambient glow pulse — used by HpBackground's glow layer */
+@keyframes hp-glow-pulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.04); }
+}
+
+/* Diagonal light beam slow sweep */
+@keyframes hp-beam-sweep {
+  0%   { transform: rotate(-15deg) translateX(-8%); opacity: 0.6; }
+  50%  { transform: rotate(-15deg) translateX(8%);  opacity: 1; }
+  100% { transform: rotate(-15deg) translateX(-8%); opacity: 0.6; }
+}
+
+/* Shard glow pulse for hero line */
+@keyframes hp-shard-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1;   }
+}
+
+/* Progress bar shimmer */
+@keyframes hp-shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+/* Timeline node illuminate */
+@keyframes hp-node-illuminate {
+  0%   { box-shadow: 0 0 0 0 rgba(168,85,247,0); }
+  50%  { box-shadow: 0 0 16px 4px rgba(168,85,247,0.6); }
+  100% { box-shadow: 0 0 8px 2px rgba(168,85,247,0.3); }
+}
+
+/* Background glow pulse class */
+.hp-bg-glow-pulse {
+  animation: hp-glow-pulse 8s ease-in-out infinite;
+}
+
+/* Beam animation class */
+.hp-bg-beam {
+  animation: hp-beam-sweep 12s ease-in-out infinite;
+}
+
+/* Shimmer utility for loading states */
+.hp-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(168, 85, 247, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  animation: hp-shimmer 2s linear infinite;
+}
+
+/* Hover underline grow — for nav links and inline links */
+.hp-link {
+  position: relative;
+  display: inline-block;
+}
+.hp-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--hp-accent-secondary);
+  transition: width var(--hp-dur-base) var(--hp-ease);
+}
+.hp-link:hover::after {
+  width: 100%;
+}
+
+/* Card lift utility */
+.hp-card-hover-lift {
+  transition:
+    transform var(--hp-dur-base) var(--hp-ease),
+    border-color var(--hp-dur-base) var(--hp-ease),
+    box-shadow var(--hp-dur-base) var(--hp-ease);
+}
+.hp-card-hover-lift:hover {
+  transform: translateY(-6px);
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 20px 60px -12px rgba(124, 58, 237, 0.35);
+}
+
+/* Input glow on focus */
+.hp-input {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--hp-border);
+  border-radius: var(--hp-radius-md);
+  color: var(--hp-text);
+  transition:
+    border-color var(--hp-dur-fast) var(--hp-ease),
+    box-shadow var(--hp-dur-fast) var(--hp-ease),
+    background var(--hp-dur-fast) var(--hp-ease);
+  padding: 0.75rem 1rem;
+  width: 100%;
+  outline: none;
+}
+.hp-input:focus {
+  border-color: var(--hp-accent-secondary);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.18);
+  background: rgba(168, 85, 247, 0.05);
+}
+.hp-input::placeholder {
+  color: var(--hp-text-tertiary);
+}
+
+/* Floating label container */
+.hp-field {
+  position: relative;
+}
+.hp-field label {
+  position: absolute;
+  top: 0.75rem;
+  left: 1rem;
+  font-size: 0.875rem;
+  color: var(--hp-text-tertiary);
+  pointer-events: none;
+  transition:
+    top var(--hp-dur-fast) var(--hp-ease),
+    font-size var(--hp-dur-fast) var(--hp-ease),
+    color var(--hp-dur-fast) var(--hp-ease);
+}
+.hp-field:focus-within label,
+.hp-field.has-value label {
+  top: -0.55rem;
+  font-size: 0.7rem;
+  color: var(--hp-accent-secondary);
+  background: var(--hp-bg);
+  padding: 0 0.25rem;
+  left: 0.75rem;
+}
+
+/* Process timeline glow line */
+.hp-timeline-line {
+  background: linear-gradient(
+    180deg,
+    var(--hp-accent-secondary) 0%,
+    var(--hp-accent-blue) 100%
+  );
+}
+
+/* Number counter animation */
+.hp-count-animate {
+  font-variant-numeric: tabular-nums;
+}
+
