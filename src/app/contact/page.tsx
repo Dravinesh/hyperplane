@@ -17,8 +17,10 @@ import {
   Globe,
   Sparkles,
   MessageSquare,
-  ShieldCheck,
   Zap,
+  Loader2,
+  ExternalLink,
+  IndianRupee,
 } from "lucide-react";
 
 export default function ContactPage() {
@@ -28,6 +30,7 @@ export default function ContactPage() {
     company: string;
     topic: string;
     budget: string;
+    customBudget: string;
     message: string;
   }>({
     name: "",
@@ -35,16 +38,51 @@ export default function ContactPage() {
     company: "",
     topic: contactData.inquiryTopics[0],
     budget: contactData.budgetRanges[0],
+    customBudget: "",
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [mailtoFallbackUrl, setMailtoFallbackUrl] = useState<string>("");
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
-    setSubmitted(true);
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit inquiry.");
+      }
+
+      if (result.mailtoFallback) {
+        setMailtoFallbackUrl(result.mailtoFallback);
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setErrorMessage(
+        err.message || "Failed to send inquiry. Please try again or email us directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,10 +99,10 @@ export default function ContactPage() {
               <MessageSquare className="size-3.5" /> Direct Architecture Inquiry
             </span>
             <h1 className="max-w-4xl font-display text-[clamp(2.4rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-tight text-white">
-              Start a Conversation with Our <span className="hp-gradient-text">Founding Team</span>
+              Start a Conversation with Our <span className="hp-gradient-text">Engineering Team</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base text-[var(--hp-text-secondary)] sm:text-lg leading-relaxed">
-              Whether you need a custom AI solution, modern web platform, or full-stack software architecture, discuss your project directly with our founders.
+              Whether you need an AI solution, custom web application, cloud modernization, or data pipeline, discuss your project requirements directly with our engineers.
             </p>
           </div>
         </Container>
@@ -81,7 +119,7 @@ export default function ContactPage() {
                   Project Inquiry
                 </h2>
                 <p className="text-xs text-[var(--hp-text-secondary)] mb-8">
-                  Share your technical requirements or project idea below. We review every inquiry and respond within 24 business hours.
+                  Share your technical requirements or project scope below. Your inquiry is delivered directly to our engineering mailbox (<span className="text-[var(--hp-accent-secondary)] font-mono">services@hyperplane.com</span>).
                 </p>
 
                 <AnimatePresence mode="wait">
@@ -96,21 +134,49 @@ export default function ContactPage() {
                         <CheckCircle className="size-8" />
                       </div>
                       <h3 className="font-display text-2xl font-medium text-white mb-2">
-                        Inquiry Received
+                        Inquiry Received & Dispatched
                       </h3>
                       <p className="text-sm text-[var(--hp-text-secondary)] max-w-md mb-6 leading-relaxed">
-                        Thank you, <strong className="text-white">{formData.name}</strong>. Our founding team will review your project details and follow up at <strong className="text-white">{formData.email}</strong> within 24 hours.
+                        Thank you, <strong className="text-white">{formData.name}</strong>. Your project details have been sent to our team at <strong className="text-[var(--hp-accent-secondary)]">services@hyperplane.com</strong>. We will review your specifications and reply to <strong className="text-white">{formData.email}</strong> within 24 business hours.
                       </p>
-                      <Button
-                        onClick={() => setSubmitted(false)}
-                        variant="secondary"
-                        size="md"
-                      >
-                        Submit Another Inquiry
-                      </Button>
+
+                      <div className="flex flex-wrap items-center justify-center gap-3">
+                        <Button
+                          onClick={() => {
+                            setSubmitted(false);
+                            setFormData({
+                              name: "",
+                              email: "",
+                              company: "",
+                              topic: contactData.inquiryTopics[0],
+                              budget: contactData.budgetRanges[0],
+                              customBudget: "",
+                              message: "",
+                            });
+                          }}
+                          variant="secondary"
+                          size="md"
+                        >
+                          Submit Another Inquiry
+                        </Button>
+
+                        {mailtoFallbackUrl && (
+                          <a href={mailtoFallbackUrl}>
+                            <Button variant="primary" size="md" withArrow>
+                              Open in Mail App
+                            </Button>
+                          </a>
+                        )}
+                      </div>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                      {errorMessage && (
+                        <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-xs text-red-300">
+                          {errorMessage}
+                        </div>
+                      )}
+
                       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div>
                           <label className="block text-xs font-medium text-white mb-2">
@@ -119,9 +185,11 @@ export default function ContactPage() {
                           <input
                             type="text"
                             required
-                            placeholder="Alex Vance"
+                            placeholder="Enter your full name"
                             value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            onChange={(e) =>
+                              setFormData({ ...formData, name: e.target.value })
+                            }
                             className="w-full rounded-xl border border-[var(--hp-border)] bg-black/50 px-4 py-3 text-sm text-white focus:border-[var(--hp-accent-secondary)] focus:outline-none transition-colors"
                           />
                         </div>
@@ -133,9 +201,11 @@ export default function ContactPage() {
                           <input
                             type="email"
                             required
-                            placeholder="alex@company.com"
+                            placeholder="your.email@company.com"
                             value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            onChange={(e) =>
+                              setFormData({ ...formData, email: e.target.value })
+                            }
                             className="w-full rounded-xl border border-[var(--hp-border)] bg-black/50 px-4 py-3 text-sm text-white focus:border-[var(--hp-accent-secondary)] focus:outline-none transition-colors"
                           />
                         </div>
@@ -143,13 +213,15 @@ export default function ContactPage() {
 
                       <div>
                         <label className="block text-xs font-medium text-white mb-2">
-                          Company / Project Name
+                          Company / Organization
                         </label>
                         <input
                           type="text"
-                          placeholder="Your Startup / Business"
+                          placeholder="Your company or project name (Optional)"
                           value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, company: e.target.value })
+                          }
                           className="w-full rounded-xl border border-[var(--hp-border)] bg-black/50 px-4 py-3 text-sm text-white focus:border-[var(--hp-accent-secondary)] focus:outline-none transition-colors"
                         />
                       </div>
@@ -160,11 +232,17 @@ export default function ContactPage() {
                         </label>
                         <select
                           value={formData.topic}
-                          onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, topic: e.target.value })
+                          }
                           className="w-full rounded-xl border border-[var(--hp-border)] bg-black/50 px-4 py-3 text-sm text-white focus:border-[var(--hp-accent-secondary)] focus:outline-none transition-colors"
                         >
                           {contactData.inquiryTopics.map((topic, i) => (
-                            <option key={i} value={topic} className="bg-[var(--hp-card)] text-white">
+                            <option
+                              key={i}
+                              value={topic}
+                              className="bg-[var(--hp-card)] text-white"
+                            >
                               {topic}
                             </option>
                           ))}
@@ -172,18 +250,23 @@ export default function ContactPage() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-medium text-white mb-2">
-                          Estimated Budget / Project Scope
+                        <label className="block text-xs font-medium text-white mb-2 flex items-center justify-between">
+                          <span>Estimated Project Budget (INR)</span>
+                          <span className="text-[11px] font-mono text-[var(--hp-accent-secondary)]">
+                            ₹ INR
+                          </span>
                         </label>
-                        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                           {contactData.budgetRanges.map((b) => (
                             <button
                               key={b}
                               type="button"
-                              onClick={() => setFormData({ ...formData, budget: b })}
-                              className={`rounded-xl border px-3 py-2 text-xs font-medium transition-all ${
+                              onClick={() =>
+                                setFormData({ ...formData, budget: b })
+                              }
+                              className={`rounded-xl border px-3 py-2.5 text-xs font-medium transition-all ${
                                 formData.budget === b
-                                  ? "border-[var(--hp-accent-secondary)] bg-[var(--hp-accent-primary)]/20 text-white"
+                                  ? "border-[var(--hp-accent-secondary)] bg-[var(--hp-accent-primary)]/20 text-white shadow-[var(--hp-shadow-glow-violet)]"
                                   : "border-[var(--hp-border)] bg-black/30 text-[var(--hp-text-secondary)] hover:text-white"
                               }`}
                             >
@@ -191,6 +274,34 @@ export default function ContactPage() {
                             </button>
                           ))}
                         </div>
+
+                        {/* Custom Budget Value Input */}
+                        {formData.budget === "Custom Budget" && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="mt-3"
+                          >
+                            <div className="relative">
+                              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-mono text-[var(--hp-accent-secondary)]">
+                                ₹
+                              </span>
+                              <input
+                                type="text"
+                                placeholder="Enter custom amount (e.g. ₹2,50,000 or custom scope)"
+                                value={formData.customBudget}
+                                onChange={(e) =>
+                                  setFormData({
+                                    ...formData,
+                                    customBudget: e.target.value,
+                                  })
+                                }
+                                className="w-full rounded-xl border border-[var(--hp-accent-secondary)]/50 bg-black/60 pl-8 pr-4 py-2.5 text-sm text-white focus:border-[var(--hp-accent-secondary)] focus:outline-none transition-colors"
+                              />
+                            </div>
+                          </motion.div>
+                        )}
                       </div>
 
                       <div>
@@ -200,16 +311,33 @@ export default function ContactPage() {
                         <textarea
                           required
                           rows={4}
-                          placeholder="Briefly describe your business challenge, desired architecture, timeline, and goals..."
+                          placeholder="Describe your project requirements, technical challenges, expected deliverables, or timeline goals..."
                           value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, message: e.target.value })
+                          }
                           className="w-full rounded-xl border border-[var(--hp-border)] bg-black/50 px-4 py-3 text-sm text-white focus:border-[var(--hp-accent-secondary)] focus:outline-none transition-colors"
                         />
                       </div>
 
-                      <Button type="submit" variant="primary" size="lg" className="w-full flex items-center justify-center gap-2">
-                        <Send className="size-4" />
-                        <span>Submit Inquiry</span>
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        size="lg"
+                        disabled={isSubmitting}
+                        className="w-full flex items-center justify-center gap-2"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="size-4 animate-spin" />
+                            <span>Transmitting Inquiry...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Send className="size-4" />
+                            <span>Submit Project Inquiry</span>
+                          </>
+                        )}
                       </Button>
                     </form>
                   )}
@@ -228,7 +356,7 @@ export default function ContactPage() {
                   </h3>
                 </div>
                 <p className="text-xs text-[var(--hp-text-secondary)] leading-relaxed mb-6">
-                  Book a direct discussion with our founding team to evaluate your software architecture, AI roadmap, or product requirements.
+                  Book a direct 30-minute consultation with our engineering team to review software architectures, AI feasibility, or product development scopes.
                 </p>
                 <Button
                   onClick={() => setIsConsultationModalOpen(true)}
@@ -247,7 +375,7 @@ export default function ContactPage() {
                   <div className="flex items-center gap-3 mb-2">
                     <Mail className="size-4 text-[var(--hp-accent-secondary)]" />
                     <span className="text-xs font-mono uppercase tracking-wider text-[var(--hp-text-tertiary)]">
-                      Direct Email
+                      Official Mailbox
                     </span>
                   </div>
                   <a
@@ -257,7 +385,7 @@ export default function ContactPage() {
                     {contactData.email}
                   </a>
                   <p className="text-xs text-[var(--hp-text-secondary)] mt-1">
-                    Guaranteed response within 24 business hours.
+                    Every inquiry is reviewed directly by our engineering leads.
                   </p>
                 </div>
               )}
@@ -322,7 +450,7 @@ export default function ContactPage() {
                 Book Architecture Session
               </h3>
               <p className="text-xs text-[var(--hp-text-secondary)] leading-relaxed mb-6">
-                Request a dedicated technical consultation session with our founding team.
+                Request a dedicated technical consultation session with our engineers.
               </p>
 
               <div className="flex flex-col gap-3 mb-6">
@@ -330,7 +458,7 @@ export default function ContactPage() {
                   <button
                     key={i}
                     onClick={() => {
-                      alert(`Session reserved for ${slot}! Confirmation will be sent via email.`);
+                      alert(`Session requested for ${slot}! Confirmation will be dispatched to services@hyperplane.com.`);
                       setIsConsultationModalOpen(false);
                     }}
                     className="rounded-xl border border-[var(--hp-border)] bg-black/40 p-3 text-xs font-medium text-white hover:border-[var(--hp-accent-secondary)] transition-colors"

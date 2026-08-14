@@ -17,7 +17,7 @@ export const contactData = {
   collaborationModes: [
     {
       title: "Direct Engineering Access",
-      detail: "Direct collaboration with our 3 founding engineers.",
+      detail: "Direct collaboration with our core founding engineers.",
     },
     {
       title: "Global Collaboration",
@@ -30,17 +30,26 @@ export const contactData = {
   ],
   inquiryTopics: [
     "AI Solutions & Machine Learning",
-    "Custom Software Engineering",
+    "Generative AI & LLM Systems",
+    "Computer Vision & Visual Intelligence",
+    "Data Engineering & Analytics Pipelines",
+    "Custom Software & Enterprise Platforms",
     "Full-Stack Web Applications",
-    "Business Automation & Pipelines",
-    "Cloud Architecture & Deployment",
-    "Product Strategy & MVP Engineering",
+    "Mobile Application Development (iOS / Android)",
+    "Cloud Architecture, DevOps & SRE",
+    "Database Architecture & Optimization",
+    "Business Automation & Workflow Pipelines",
+    "UI/UX Design Systems & Product Strategy",
+    "API Engineering & System Integrations",
+    "Cybersecurity & Architecture Review",
+    "Other / Specialized Engineering",
   ],
   budgetRanges: [
-    "Exploring / Early Stage",
-    "$10,000 – $25,000",
-    "$25,000 – $50,000",
-    "$50,000+",
+    "₹50,000 – ₹1,50,000",
+    "₹1,50,000 – ₹5,00,000",
+    "₹5,00,000 – ₹15,00,000",
+    "₹15,00,000+",
+    "Custom Budget",
   ],
   socials: [
     {
