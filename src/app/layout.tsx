@@ -3,7 +3,6 @@ import { Space_Grotesk, Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { LoadingScreen } from "@/components/providers/LoadingScreen";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 
@@ -50,9 +49,8 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-[var(--hp-bg)] antialiased">
         <SmoothScrollProvider>
-          {/* Phase 3 — Global UI chrome */}
+          {/* First-visit preloader */}
           <LoadingScreen />
-          <CustomCursor />
           <Navbar />
           <main>{children}</main>
           <Footer />
