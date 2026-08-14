@@ -68,7 +68,7 @@ export const teamData: TeamSpecialist[] = [
   },
   {
     id: "dhanush",
-    name: "Dhanush Yes",
+    name: "Dhanush S",
     role: "Co-Founder",
     department: "AI & Analytics",
     specialization: "AI & Machine Learning / Data Analytics",
