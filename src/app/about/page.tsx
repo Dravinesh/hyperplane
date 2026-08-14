@@ -9,15 +9,14 @@ import { Button } from "@/components/ui/Button";
 import { CTASection } from "@/components/sections/CTASection";
 import { companyData } from "@/data/company";
 import { teamData } from "@/data/team";
-import { FounderAvatar } from "@/components/ui/FounderAvatar";
+import { SpecialistVisual } from "@/components/ui/SpecialistVisual";
 import {
   Target,
   Eye,
   Sparkles,
-  ArrowUpRight,
+  ArrowRight,
   CheckCircle,
-  Users,
-  Compass,
+  Layers,
 } from "lucide-react";
 import Link from "next/link";
 import { fadeUp, stagger, viewportOnce } from "@/animations/variants";
@@ -47,61 +46,61 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* FOUNDING TEAM SPOTLIGHT */}
+      {/* MULTIDISCIPLINARY CAPABILITY SPOTLIGHT */}
       <section className="py-12">
         <Container>
           <SectionHeading
-            eyebrow="Founding Team"
-            title="The Builders Behind Hyperplane"
-            description="Meet the three founders leading engineering, AI, data science, and product development at Hyperplane."
+            eyebrow="Multidisciplinary Engineering"
+            title="Built by Specialists"
+            description="Hyperplane unites expertise across AI, database engineering, cloud infrastructure, full-stack software, UX design, and market growth."
             align="center"
             className="mb-14"
           />
 
           <motion.div
-            variants={stagger(0.12)}
+            variants={stagger(0.1)}
             initial="hidden"
             whileInView="show"
             viewport={viewportOnce}
             className="grid grid-cols-1 gap-8 md:grid-cols-3"
           >
-            {teamData.map((member) => (
+            {teamData.slice(0, 3).map((specialist) => (
               <motion.div
-                key={member.id}
+                key={specialist.id}
                 variants={fadeUp}
                 whileHover={{
                   y: -6,
                   transition: { duration: 0.3, ease: HP_EASE },
                 }}
               >
-                <Card className="group h-full flex flex-col justify-between p-7 md:p-8 border border-[var(--hp-border)] transition-all duration-300 hover:border-[var(--hp-accent-secondary)]/40 hover:shadow-[0_12px_48px_-12px_rgba(168,85,247,0.25)] relative overflow-hidden">
+                <Card className="group h-full flex flex-col justify-between p-7 border border-[var(--hp-border)] transition-all duration-300 hover:border-[var(--hp-accent-secondary)]/40 hover:shadow-[0_12px_48px_-12px_rgba(168,85,247,0.25)] relative overflow-hidden bg-[var(--hp-card)]">
                   <div>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-5">
-                      <FounderAvatar
-                        src={member.image}
-                        name={member.name}
-                        initials={member.initials}
-                        gradient={member.avatarGradient}
+                    <div className="flex items-start gap-4 mb-5">
+                      <SpecialistVisual
+                        theme={specialist.visualTheme}
+                        initials={specialist.initials}
+                        gradient={specialist.avatarGradient}
+                        name={specialist.name}
                       />
                       <div>
                         <span className="inline-block rounded-full bg-[var(--hp-accent-primary)]/15 px-2.5 py-0.5 text-[10px] font-semibold text-[var(--hp-accent-secondary)] border border-[var(--hp-accent-primary)]/30 font-mono">
-                          {member.role}
+                          {specialist.department}
                         </span>
                         <h3 className="font-display text-lg font-medium text-white mt-1">
-                          {member.name}
+                          {specialist.name}
                         </h3>
-                        <p className="text-xs text-[var(--hp-accent-secondary)]">
-                          {member.capability}
+                        <p className="text-xs text-[var(--hp-text-tertiary)]">
+                          {specialist.role}
                         </p>
                       </div>
                     </div>
 
                     <p className="text-xs text-[var(--hp-text-secondary)] leading-relaxed mb-5">
-                      {member.bio}
+                      {specialist.bio}
                     </p>
 
                     <div className="flex flex-wrap gap-1.5 mb-4">
-                      {member.skills.slice(0, 4).map((skill, i) => (
+                      {specialist.skills.slice(0, 4).map((skill, i) => (
                         <span
                           key={i}
                           className="rounded-md bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] text-[var(--hp-text-secondary)] border border-[var(--hp-border)]"
@@ -112,29 +111,23 @@ export default function AboutPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-[var(--hp-border)] pt-4 mt-2">
-                    <a
-                      href={member.socials.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${member.name} on LinkedIn`}
-                      className="inline-flex items-center gap-1.5 text-xs text-[var(--hp-accent-secondary)] hover:text-white transition-colors"
-                    >
-                      <span className="font-brand-title text-[10px]">LINKEDIN</span>
-                      <ArrowUpRight className="size-3" />
-                    </a>
-
-                    <Link
-                      href="/team"
-                      className="text-[11px] text-[var(--hp-text-tertiary)] hover:text-white transition-colors"
-                    >
-                      Full Profile →
-                    </Link>
+                  <div className="border-t border-[var(--hp-border)] pt-4 mt-2">
+                    <span className="text-xs text-[var(--hp-accent-secondary)] font-medium">
+                      {specialist.specialization}
+                    </span>
                   </div>
                 </Card>
               </motion.div>
             ))}
           </motion.div>
+
+          <div className="mt-10 flex justify-center">
+            <Link href="/team">
+              <Button variant="secondary" size="md" withArrow>
+                Explore All 6 Capability Domains
+              </Button>
+            </Link>
+          </div>
         </Container>
       </section>
 
@@ -236,7 +229,7 @@ export default function AboutPage() {
         <Container>
           <SectionHeading
             eyebrow="Company Trajectory"
-            title="Our Founding Journey"
+            title="Our Engineering Journey"
             description="How Hyperplane is progressing from foundational engineering to scalable digital products."
             align="center"
             className="mb-16"

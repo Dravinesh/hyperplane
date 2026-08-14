@@ -37,7 +37,7 @@ export const companyData = {
       year: "2026",
       title: "Hyperplane Founded",
       description:
-        "Started by Dravinesh Narayanan, Dhanush, and Shahira Shabnam to build high-performance software and practical AI systems.",
+        "Established by a team of engineers, researchers, and builders to develop high-performance software and practical AI systems from first principles.",
     },
     {
       year: "2026",

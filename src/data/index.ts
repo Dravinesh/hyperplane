@@ -3,6 +3,7 @@ export * from "./services";
 export * from "./projects";
 export * from "./process";
 export * from "./team";
+export * from "./founders";
 export * from "./blog";
 export * from "./faq";
 export * from "./testimonials";
