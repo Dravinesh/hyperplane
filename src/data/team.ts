@@ -1,9 +1,10 @@
 export type TeamMember = {
   id: string;
   name: string;
-  role: string;
-  badge: string;
+  role: "Co-Founder";
+  capability: string;
   bio: string;
+  image: string;
   avatarGradient: string;
   initials: string;
   skills: string[];
@@ -14,89 +15,74 @@ export type TeamMember = {
   };
 };
 
+export const teamHeading = "The Minds Behind Hyperplane";
+export const teamSupportingText =
+  "Three builders bringing together AI, engineering, data, and product thinking to create technology that solves real business problems.";
+
 export const teamData: TeamMember[] = [
   {
-    id: "alex-vance",
-    name: "Alex Vance",
-    role: "Founder & Chief Executive Officer",
-    badge: "Founder",
-    bio: "Former enterprise systems architect with 14+ years experience leading engineering teams. Obsessed with zero-bloat architecture and product precision.",
-    avatarGradient: "from-violet-500 via-indigo-500 to-purple-600",
-    initials: "AV",
-    skills: ["System Architecture", "Product Strategy", "Technical Leadership", "AI Integration"],
+    id: "dravinesh",
+    name: "Dravinesh Narayanan",
+    role: "Co-Founder",
+    capability: "AI & Data / Technology",
+    bio: "Dravinesh is an AI and Data Science engineer focused on turning intelligent systems into practical software products. His experience spans machine learning, computer vision, data, and full-stack development.",
+    image: "/team/dravinesh.webp",
+    avatarGradient: "from-violet-600 via-indigo-600 to-purple-800",
+    initials: "DN",
+    skills: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Data Science",
+      "Computer Vision",
+      "Full-Stack Development",
+      "Python",
+      "Java",
+      "SQL / Data",
+    ],
     socials: {
-      linkedin: "https://linkedin.com/in/hyperplane-placeholder",
-      github: "https://github.com/hyperplane-placeholder",
-      twitter: "https://twitter.com/hyperplane-placeholder",
+      linkedin: "https://www.linkedin.com/in/dravinesh-narayanan-b64561248/",
     },
   },
   {
-    id: "elena-rostova",
-    name: "Dr. Elena Rostova",
-    role: "Principal AI Engineer",
-    badge: "AI Engineer",
-    bio: "PhD in Computer Science with a focus on neural networks and retrieval systems. Spearheads custom LLM fine-tuning and agentic workflow R&D at Hyperplane.",
-    avatarGradient: "from-indigo-500 via-purple-500 to-violet-600",
-    initials: "ER",
-    skills: ["PyTorch", "RAG Systems", "LLM Distillation", "Vector Databases", "Agentic AI"],
+    id: "dhanush",
+    name: "Dhanush",
+    role: "Co-Founder",
+    capability: "Technology & Products",
+    bio: "Building Hyperplane alongside the founding team, contributing to the company's technology, products, and growth.",
+    image: "/team/dhanush.webp",
+    avatarGradient: "from-indigo-600 via-purple-600 to-violet-800",
+    initials: "D",
+    skills: [
+      "Software Engineering",
+      "Product Architecture",
+      "Technology Strategy",
+      "Full-Stack Systems",
+    ],
     socials: {
-      linkedin: "https://linkedin.com/in/hyperplane-placeholder",
-      github: "https://github.com/hyperplane-placeholder",
+      linkedin: "https://www.linkedin.com/in/dhanushs0603/",
     },
   },
   {
-    id: "marcus-chen",
-    name: "Marcus Chen",
-    role: "Lead Software Architect",
-    badge: "Lead Engineer",
-    bio: "Specializes in high-frequency distributed systems, Rust, and Go. Previously engineered payment clearing platforms processing over $2B annually.",
-    avatarGradient: "from-purple-500 via-violet-600 to-indigo-700",
-    initials: "MC",
-    skills: ["Go", "Rust", "Distributed Systems", "Kafka", "PostgreSQL Engine Tuning"],
+    id: "shahira",
+    name: "Shahira Shabnam",
+    role: "Co-Founder",
+    capability: "AI & Machine Learning",
+    bio: "Shahira is an AI and Machine Learning practitioner with experience across data science, model development, GenAI, and software development. She brings an analytical and research-oriented perspective to the products Hyperplane builds.",
+    image: "/team/shahira.webp",
+    avatarGradient: "from-purple-600 via-violet-600 to-indigo-800",
+    initials: "SS",
+    skills: [
+      "Machine Learning",
+      "GenAI / LLMs",
+      "Data Science",
+      "Data Pipelines",
+      "SHAP / Explainability",
+      "XGBoost",
+      "Python",
+      "Java",
+    ],
     socials: {
-      linkedin: "https://linkedin.com/in/hyperplane-placeholder",
-      github: "https://github.com/hyperplane-placeholder",
-    },
-  },
-  {
-    id: "sarah-jenkins",
-    name: "Sarah Jenkins",
-    role: "Head of UI/UX Design",
-    badge: "UI Designer",
-    bio: "Award-winning product designer creating high-contrast luxury UI, complex data visualization dashboards, and seamless design systems.",
-    avatarGradient: "from-violet-600 via-purple-500 to-blue-600",
-    initials: "SJ",
-    skills: ["Design Systems", "Figma", "Micro-Interactions", "User Research", "Dark Luxury UI"],
-    socials: {
-      linkedin: "https://linkedin.com/in/hyperplane-placeholder",
-      twitter: "https://twitter.com/hyperplane-placeholder",
-    },
-  },
-  {
-    id: "david-kruger",
-    name: "David Kruger",
-    role: "Cloud Infrastructure Lead",
-    badge: "Cloud Engineer",
-    bio: "Kubernetes maintainer and Site Reliability Engineer. Expert in zero-trust cloud infrastructure, automated multi-region failover, and GitOps.",
-    avatarGradient: "from-blue-600 via-indigo-600 to-purple-600",
-    initials: "DK",
-    skills: ["Kubernetes", "Terraform", "AWS / GCP", "DevOps", "Prometheus & SRE"],
-    socials: {
-      linkedin: "https://linkedin.com/in/hyperplane-placeholder",
-      github: "https://github.com/hyperplane-placeholder",
-    },
-  },
-  {
-    id: "maya-patel",
-    name: "Maya Patel",
-    role: "Director of Engineering",
-    badge: "Engineering Lead",
-    bio: "Bridges client product visions with agile execution. Oversees sprint planning, technical quality assurance, and engineering delivery speed.",
-    avatarGradient: "from-indigo-600 via-violet-500 to-purple-500",
-    initials: "MP",
-    skills: ["Agile Delivery", "Technical Project Management", "QA Frameworks", "CI/CD Orchestration"],
-    socials: {
-      linkedin: "https://linkedin.com/in/hyperplane-placeholder",
+      linkedin: "https://www.linkedin.com/in/shahira-shabnam-653116241/",
     },
   },
 ];

@@ -2,63 +2,54 @@ export const companyData = {
   name: "Hyperplane",
   tagline: "Vision Beyond Dimensions",
   foundedYear: 2026,
+  headline:
+    "Hyperplane was built by a team of engineers and builders who believe technology should do more than exist — it should move businesses forward.",
   mission:
-    "To build high-performance software systems and intelligent AI solutions that empower forward-thinking enterprises to operate at unconstrained scale.",
+    "To engineer practical software architectures, AI systems, and cloud foundations that solve genuine business problems with high performance and zero unnecessary overhead.",
   vision:
-    "To define the next standard of enterprise software engineering, where AI automation, cloud resilience, and immaculate user experience converge into a single hyper-efficient platform.",
+    "To build modern technology from first principles, where artificial intelligence, deterministic engineering, and clean design converge into reliable digital products.",
   whyWeExist:
-    "Modern tech companies are plagued by bloat, slow delivery cycles, and disjointed toolings. Hyperplane exists to bridge high-level strategy with deeply specialized, zero-overhead software engineering.",
+    "Too many businesses are sold bloated templates or generic agency promises when what they actually need is sound engineering tailored to their operational reality. Hyperplane exists to build technology that moves businesses forward.",
   engineeringPhilosophy: [
     {
-      title: "Systems Over Code",
+      title: "Business Understanding First",
       description:
-        "We build cohesive, scalable architectures designed for long-term maintainability rather than quick temporary patches.",
+        "We start with your operational model and real constraints, not a pre-packaged technology we want to sell you.",
     },
     {
-      title: "Determinism & Precision",
+      title: "Engineering from First Principles",
       description:
-        "Every function, database schema, and microservice is benchmarked for predictability, zero race conditions, and peak speed.",
+        "Every data model, API endpoint, and AI component is chosen with deliberate technical reasoning, ensuring predictability and speed.",
     },
     {
       title: "AI as a Native Layer",
       description:
-        "We treat artificial intelligence not as a marketing bolt-on, but as a core component integrated into business workflows.",
+        "We integrate machine learning, RAG pipelines, and agentic workflows where they deliver real automation value — not as buzzwords.",
     },
     {
-      title: "Product-Driven Engineering",
+      title: "Long-Term Reliability",
       description:
-        "Our engineers understand product strategy, business metrics, and UX design, ensuring technical decisions drive real commercial outcomes.",
+        "We build clean, maintainable codebases designed for the business you are growing into, remaining accountable to outcomes.",
     },
   ],
-  futureGoals: [
-    "Establish global research hubs across North America, Europe, and Asia-Pacific by 2028.",
-    "Launch Hyperplane Autonomous Orchestration — an agentic infrastructure manager — in late 2027.",
-    "Help 100+ enterprise clients eliminate 80% of manual operational friction by 2029.",
-  ],
-  timeline: [
+  milestones: [
     {
       year: "2026",
       title: "Hyperplane Founded",
       description:
-        "Established by veteran software architects and AI researchers to rebuild enterprise tech stacks from the ground up.",
+        "Started by Dravinesh Narayanan, Dhanush, and Shahira Shabnam to build high-performance software and practical AI systems.",
     },
     {
-      year: "2027",
-      title: "First Enterprise AI Deployments",
+      year: "2026",
+      title: "First Generation Projects",
       description:
-        "Delivered custom LLM inference platforms and real-time risk decision engines for high-growth fintech and logistics pioneers.",
+        "Building core client platforms and specialized AI platforms including Divyavasthu, SustainAgent, SyncDoc AI, and LegacyMind AI.",
     },
     {
-      year: "2028",
-      title: "Global Scaling & Infrastructure Hubs",
+      year: "Now & Beyond",
+      title: "Engineering Scalable Products",
       description:
-        "Expanded engineering presence to 3 continents and introduced automated zero-trust cloud orchestration frameworks.",
-    },
-    {
-      year: "2029",
-      title: "Hyperplane Agentic Platform",
-      description:
-        "Released our proprietary enterprise automation suite enabling autonomous business process optimization at scale.",
+        "Partnering directly with businesses and forward-thinking teams to architect and launch production-grade digital systems.",
     },
   ],
 } as const;

@@ -1,48 +1,52 @@
+export type OfficeLocation = {
+  city: string;
+  role: string;
+  address: string;
+  timezone: string;
+};
+
 export const contactData = {
   email: "services@hyperplane.com",
-  phonePlaceholder: "+1 (800) 555-0199",
-  offices: [
+  phone: null as string | null,
+  headquarters: {
+    city: "Greater Chennai Area",
+    region: "Tamil Nadu, India",
+    role: "Founding Hub",
+    timezone: "IST (UTC+5:30)",
+  },
+  collaborationModes: [
     {
-      city: "San Francisco",
-      role: "Global Headquarters",
-      address: "500 Howard Street, Suite 800, San Francisco, CA 94105",
-      timezone: "PST (UTC-8)",
+      title: "Direct Engineering Access",
+      detail: "Direct collaboration with our 3 founding engineers.",
     },
     {
-      city: "New York",
-      role: "East Coast Tech Hub",
-      address: "One World Trade Center, Floor 65, New York, NY 10007",
-      timezone: "EST (UTC-5)",
+      title: "Global Collaboration",
+      detail: "Asynchronous & synchronous project sprints across timezones.",
     },
     {
-      city: "London",
-      role: "EMEA Engineering Hub",
-      address: "100 Bishopsgate, Level 18, London EC2N 4AG",
-      timezone: "GMT (UTC+0)",
+      title: "Guaranteed Turnaround",
+      detail: "Technical response and feasibility review within 24 hours.",
     },
-  ],
-  businessHours: [
-    { days: "Monday – Friday", hours: "08:00 AM – 07:00 PM (Local Time)" },
-    { days: "Saturday – Sunday", hours: "Emergency SRE On-Call Active 24/7" },
   ],
   inquiryTopics: [
     "AI Solutions & Machine Learning",
     "Custom Software Engineering",
-    "Business Automation & Workflows",
-    "Cloud Infrastructure & Migration",
-    "Modern Web Application",
-    "UI/UX Design Systems",
-    "Strategic Tech Consulting",
+    "Full-Stack Web Applications",
+    "Business Automation & Pipelines",
+    "Cloud Architecture & Deployment",
+    "Product Strategy & MVP Engineering",
   ],
   budgetRanges: [
+    "Exploring / Early Stage",
+    "$10,000 – $25,000",
     "$25,000 – $50,000",
-    "$50,000 – $100,000",
-    "$100,000 – $250,000",
-    "$250,000+",
+    "$50,000+",
   ],
   socials: [
-    { label: "LinkedIn", href: "https://linkedin.com/company/hyperplane-placeholder" },
-    { label: "GitHub", href: "https://github.com/hyperplane-placeholder" },
-    { label: "Twitter", href: "https://twitter.com/hyperplane-placeholder" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/hyperplane-tech",
+      isConfigured: false,
+    },
   ],
 } as const;

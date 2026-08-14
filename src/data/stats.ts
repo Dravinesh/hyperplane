@@ -6,23 +6,23 @@ export type StatItem = {
 
 export const statsData: StatItem[] = [
   {
-    value: "99.99%",
-    label: "Platform Uptime SLA",
-    sublabel: "Guaranteed across multi-region cloud clusters",
+    value: "3",
+    label: "Founding Builders",
+    sublabel: "Specialized in AI, ML, Data Science & Full-Stack",
+  },
+  {
+    value: "100%",
+    label: "Custom Codebases",
+    sublabel: "Engineered from first principles with zero bloat",
   },
   {
     value: "< 120ms",
-    label: "Average Inference Latency",
-    sublabel: "Sub-second AI model response throughput",
+    label: "Target Inference Speed",
+    sublabel: "Optimized pipelines and low-latency architectures",
   },
   {
-    value: "$180M+",
-    label: "Client Value Generated",
-    sublabel: "Through automation and infrastructure optimization",
-  },
-  {
-    value: "45+",
-    label: "Enterprise Solutions Shipped",
-    sublabel: "Across fintech, healthcare, logistics & retail",
+    value: "24/7",
+    label: "Direct Collaboration",
+    sublabel: "Working directly with the core founding engineers",
   },
 ];
