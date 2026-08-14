@@ -20,8 +20,9 @@ import {
   Sparkles,
   Code2,
   ArrowRight,
-  Filter,
-  CheckCircle2,
+  ArrowUpRight,
+  Users,
+  ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
 import { fadeUp, stagger, viewportOnce } from "@/animations/variants";
@@ -31,7 +32,7 @@ export default function TeamPage() {
   const [activeCategory, setActiveCategory] =
     useState<SpecialistCategory>("All");
 
-  const filteredSpecialists =
+  const filteredTeam =
     activeCategory === "All"
       ? teamData
       : teamData.filter((s) => s.category === activeCategory);
@@ -47,7 +48,7 @@ export default function TeamPage() {
         <Container>
           <div className="flex flex-col items-center text-center">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--hp-border-strong)] bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-[var(--hp-accent-secondary)]">
-              <Layers className="size-3.5" /> Multidisciplinary Capabilities
+              <Users className="size-3.5" /> Leadership & Specialist Guild
             </span>
             <h1 className="max-w-4xl font-display text-[clamp(2.4rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-tight text-white">
               {teamHeading}
@@ -86,7 +87,7 @@ export default function TeamPage() {
         </Container>
       </section>
 
-      {/* SPECIALIST CARDS GRID */}
+      {/* 9 TEAM CARDS GRID */}
       <section className="hp-section">
         <Container>
           <motion.div
@@ -94,9 +95,9 @@ export default function TeamPage() {
             className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             <AnimatePresence mode="popLayout">
-              {filteredSpecialists.map((specialist) => (
+              {filteredTeam.map((member) => (
                 <motion.div
-                  key={specialist.id}
+                  key={member.id}
                   layout
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -115,23 +116,29 @@ export default function TeamPage() {
                     />
 
                     <div>
-                      {/* Specialist Visual & Identifier */}
+                      {/* Avatar / Visual & Identifier */}
                       <div className="flex items-start gap-4 mb-6">
                         <SpecialistVisual
-                          theme={specialist.visualTheme}
-                          initials={specialist.initials}
-                          gradient={specialist.avatarGradient}
-                          name={specialist.name}
+                          theme={member.visualTheme}
+                          initials={member.initials}
+                          gradient={member.avatarGradient}
+                          name={member.name}
                         />
                         <div className="flex-1">
-                          <span className="inline-block rounded-full bg-[var(--hp-accent-primary)]/15 px-2.5 py-0.5 text-[10px] font-semibold text-[var(--hp-accent-secondary)] border border-[var(--hp-accent-primary)]/30 font-mono tracking-wider">
-                            {specialist.department}
+                          <span
+                            className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] font-semibold font-mono tracking-wider border ${
+                              !member.isPlaceholder
+                                ? "bg-[var(--hp-accent-primary)]/25 text-[var(--hp-accent-secondary)] border-[var(--hp-accent-primary)]/50"
+                                : "bg-white/[0.04] text-[var(--hp-text-secondary)] border-[var(--hp-border)]"
+                            }`}
+                          >
+                            {member.role}
                           </span>
                           <h2 className="font-display text-xl font-medium text-white mt-1.5">
-                            {specialist.name}
+                            {member.name}
                           </h2>
                           <p className="text-xs text-[var(--hp-text-tertiary)] mt-0.5 font-medium">
-                            {specialist.role}
+                            {member.department}
                           </p>
                         </div>
                       </div>
@@ -142,22 +149,22 @@ export default function TeamPage() {
                           Specialization
                         </span>
                         <span className="text-xs text-[var(--hp-accent-secondary)] font-medium">
-                          {specialist.specialization}
+                          {member.specialization}
                         </span>
                       </div>
 
                       {/* Bio */}
                       <p className="text-xs text-[var(--hp-text-secondary)] leading-relaxed mb-6">
-                        {specialist.bio}
+                        {member.bio}
                       </p>
 
                       {/* Skill Tags */}
                       <div className="mb-6">
                         <span className="text-[10px] uppercase font-semibold text-[var(--hp-text-tertiary)] tracking-wider block mb-2 font-mono">
-                          Technical Arsenal
+                          Key Areas & Technologies
                         </span>
                         <div className="flex flex-wrap gap-1.5">
-                          {specialist.skills.map((skill, i) => (
+                          {member.skills.map((skill, i) => (
                             <span
                               key={i}
                               className="rounded-md bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] text-[var(--hp-text-secondary)] border border-[var(--hp-border)] transition-colors group-hover:border-[var(--hp-border-strong)] group-hover:text-white"
@@ -169,13 +176,29 @@ export default function TeamPage() {
                       </div>
                     </div>
 
-                    {/* Card Footer Indicator */}
+                    {/* Card Footer: LinkedIn for Founders OR Capability Indicator */}
                     <div className="flex items-center justify-between border-t border-[var(--hp-border)] pt-4 mt-2">
-                      <span className="text-[11px] font-mono text-[var(--hp-text-tertiary)]">
-                        Capability Domain //
-                      </span>
+                      {member.linkedin ? (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View ${member.name} on LinkedIn`}
+                          className="group/link inline-flex items-center gap-1.5 rounded-full border border-[var(--hp-border)] bg-black/40 px-3.5 py-1.5 text-xs font-medium text-[var(--hp-text-secondary)] hover:border-[var(--hp-accent-secondary)] hover:text-white hover:bg-[var(--hp-accent-primary)]/15 transition-all duration-200"
+                        >
+                          <span className="font-brand-title tracking-[0.2em] text-[10px]">
+                            LINKEDIN
+                          </span>
+                          <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                        </a>
+                      ) : (
+                        <span className="text-[11px] font-mono text-[var(--hp-text-tertiary)]">
+                          Specialist Discipline //
+                        </span>
+                      )}
+
                       <div className="flex items-center gap-1 text-xs font-medium text-[var(--hp-accent-secondary)] group-hover:text-white transition-colors">
-                        <span>Deploy Capability</span>
+                        <span>{member.isPlaceholder ? "Deploy Capability" : "Core Founder"}</span>
                         <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                       </div>
                     </div>

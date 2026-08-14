@@ -20,12 +20,13 @@ export type TeamSpecialist = {
   visualTheme: "neural" | "database" | "cloud" | "design" | "nodes" | "trajectory";
   initials: string;
   avatarGradient: string;
+  linkedin?: string;
 };
 
-export const teamHeading = "Built by Specialists";
+export const teamHeading = "The Team & Specialists";
 export const teamTagline = "Different disciplines. One technology vision.";
 export const teamSupportingText =
-  "Hyperplane brings together specialists across engineering, design, data, cloud, AI, and growth to solve complex business problems from first principles.";
+  "Hyperplane unites core leadership and multidisciplinary specialists across AI, machine learning, data architecture, cloud infrastructure, full-stack software, UX design, and market growth.";
 
 export const teamCategories: SpecialistCategory[] = [
   "All",
@@ -37,6 +38,89 @@ export const teamCategories: SpecialistCategory[] = [
 ];
 
 export const teamData: TeamSpecialist[] = [
+  // -------------------------------------------------------------
+  // 1. Core Founding Team Members (Containers 1, 2, 3)
+  // -------------------------------------------------------------
+  {
+    id: "dravinesh",
+    name: "Dravinesh Narayanan",
+    role: "Co-Founder",
+    department: "AI & Engineering",
+    specialization: "AI & Data / Technology",
+    bio: "Dravinesh is an AI and Data Science engineer focused on turning intelligent systems into practical software products. His experience spans machine learning, computer vision, data, and full-stack development.",
+    skills: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Data Science",
+      "Computer Vision",
+      "Full-Stack Development",
+      "Python",
+      "Java",
+      "SQL / Data",
+    ],
+    image: "/team/dravinesh.webp",
+    isPlaceholder: false,
+    category: "AI & Data",
+    visualTheme: "neural",
+    initials: "DN",
+    avatarGradient: "from-violet-600 via-indigo-600 to-purple-800",
+    linkedin: "https://www.linkedin.com/in/dravinesh-narayanan-b64561248/",
+  },
+  {
+    id: "dhanush",
+    name: "Dhanush",
+    role: "Co-Founder",
+    department: "AI & Analytics",
+    specialization: "AI & Machine Learning / Data Analytics",
+    bio: "Dhanush is an AI, Machine Learning, and Data Analytics enthusiast contributing to Hyperplane's data-driven solutions and technology. His experience includes Python, data analysis, machine learning, SQL, business intelligence, and web development, with hands-on experience building AI and data-focused projects.",
+    skills: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Data Analytics",
+      "Python",
+      "SQL / MySQL",
+      "Power BI",
+      "Pandas",
+      "NumPy",
+      "Full-Stack Development",
+    ],
+    image: "/team/dhanush.webp",
+    isPlaceholder: false,
+    category: "AI & Data",
+    visualTheme: "nodes",
+    initials: "D",
+    avatarGradient: "from-indigo-600 via-purple-600 to-violet-800",
+    linkedin: "https://www.linkedin.com/in/dhanushs0603/",
+  },
+  {
+    id: "shahira",
+    name: "Shahira Shabnam",
+    role: "Co-Founder",
+    department: "AI & Machine Learning",
+    specialization: "AI & Machine Learning",
+    bio: "Shahira is an AI and Machine Learning practitioner with experience across data science, model development, GenAI, and software development. She brings an analytical and research-oriented perspective to the products Hyperplane builds.",
+    skills: [
+      "Machine Learning",
+      "GenAI / LLMs",
+      "Data Science",
+      "Data Pipelines",
+      "SHAP / Explainability",
+      "XGBoost",
+      "Python",
+      "Java",
+    ],
+    image: "/team/shahira.webp",
+    isPlaceholder: false,
+    category: "AI & Data",
+    visualTheme: "neural",
+    initials: "SS",
+    avatarGradient: "from-purple-600 via-violet-600 to-indigo-800",
+    linkedin: "https://www.linkedin.com/in/shahira-shabnam-653116241/",
+  },
+
+  // -------------------------------------------------------------
+  // 2. Multidisciplinary Specialists (Containers 4 to 9)
+  // -------------------------------------------------------------
   {
     id: "arjun-mehta",
     name: "Arjun Mehta",

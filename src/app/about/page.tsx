@@ -124,7 +124,7 @@ export default function AboutPage() {
           <div className="mt-10 flex justify-center">
             <Link href="/team">
               <Button variant="secondary" size="md" withArrow>
-                Explore All 6 Capability Domains
+                Explore All 9 Profiles & Specialists
               </Button>
             </Link>
           </div>
